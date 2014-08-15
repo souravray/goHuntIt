@@ -2,7 +2,7 @@
 * @Author: Sourav Ray <me@raysourav.com>
 * @Date:   2014-08-15 01:24:47
 * @Last Modified by:   souravray
-* @Last Modified time: 2014-08-15 23:14:45
+* @Last Modified time: 2014-08-16 00:32:53
 * @License: BEER-WARE
  */
 
@@ -153,6 +153,11 @@ func (self *Client) ClientOnlyAuth() error {
 }
 
 // USER and POSTS
+type UserImageResponseBody struct {
+	Small    string `json:"48px"`
+	Big      string `json:"73px"`
+	Original string
+}
 
 type UserResponseBody struct {
 	Id         int
@@ -160,7 +165,12 @@ type UserResponseBody struct {
 	Headline   string
 	Created_at string
 	Username   string
-	// Image_url  []string  /*current jso schema has a non nocompatable key*/
+	Image_url  UserImageResponseBody
+}
+
+type PostImageResponseBody struct {
+	Small string `json:"300px"`
+	Big   string `json:"850px"`
 }
 
 type PostResponceBody struct {
@@ -173,9 +183,9 @@ type PostResponceBody struct {
 	Votes_count    int
 	Discussion_url string
 	Redirect_url   string
-	// Screenshot_url []string /*current jso schema has a non nocompatable key*/
-	Maker_inside bool
-	User         UserResponseBody
+	Screenshot_url PostImageResponseBody
+	Maker_inside   bool
+	User           UserResponseBody
 }
 
 type PostsResponceBody struct {
