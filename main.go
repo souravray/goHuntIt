@@ -2,7 +2,7 @@
 * @Author: Sourav Ray <me@raysourav.com>
 * @Date:   2014-08-15 01:24:47
 * @Last Modified by:   souravray
-* @Last Modified time: 2014-08-16 00:32:53
+* @Last Modified time: 2014-08-17 10:07:01
 * @License: BEER-WARE
  */
 
@@ -195,7 +195,7 @@ type PostsResponceBody struct {
 /* API method: Today's Posts
  *  Doc: https://www.producthunt.com/v1/docs/posts/postsindex__get_the_posts_of_today
  */
-func (self *Client) PostsOfTheDay() error {
+func (self *Client) PostsOfTheDay() (*PostsResponceBody, error) {
 	endpoint := "posts"
 
 	data := &PostsResponceBody{}
@@ -204,7 +204,7 @@ func (self *Client) PostsOfTheDay() error {
 	headers["Authorization"] = "Bearer " + self.BearerToken
 
 	err := self.request("GET", endpoint, nil, nil, headers, data)
-	return err
+	return data, err
 }
 
 /* API method: Historical Posts
